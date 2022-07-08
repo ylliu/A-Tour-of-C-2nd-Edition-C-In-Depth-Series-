@@ -22,3 +22,9 @@ map<string,int> m;
 for (const auto [key,value] : m)
 cout << "{" << key "," << value << "}\n";
 ```
+5. The constructor/destructor combination is the basis of many elegant techniques. In particular, it is the basis for most C++ general resource management techniques (§5.3, §13.2). The technique of acquiring resources in a
+constructor and releasing them in a destructor, known as Resource Acquisition Is Initialization or
+RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code
+and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked
+delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less
+error-prone and far easier to keep free of resource leaks (§13.2).
