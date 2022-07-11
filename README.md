@@ -28,3 +28,23 @@ RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid
 and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked
 delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less
 error-prone and far easier to keep free of resource leaks (§13.2).
+
+6. One simple solution to such problems is to use a standard-library unique_ptr (§13.2.1) rather     
+than a ‘‘naked pointer’’ when deletion is required:
+```c++
+class Smiley : public Circle {
+// ...
+private:
+vector<unique_ptr<Shape>> eyes; // usually two eyes
+unique_ptr<Shape> mouth;
+};
+```
+instead of    
+```c++
+class Smiley : public Circle {
+// ...
+private:
+vector<Shape∗> eyes; // usually two eyes
+Shape∗ mouth;
+};
+```
