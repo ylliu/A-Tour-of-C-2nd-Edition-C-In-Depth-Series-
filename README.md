@@ -49,3 +49,26 @@ Shape∗ mouth;
 };
 ```
 When to use shared_ptr https://zhuanlan.zhihu.com/p/56874877   
+
+7. copy constructor 
+https://www.geeksforgeeks.org/copy-constructor-in-cpp/   
+```c++
+Vector::Vector(const Vector &a)
+        : elem(new double[a.sz]), sz(a.sz) {
+    for (int i = 0; i < a.sz; i++) {
+        elem[i] = a.elem[i];
+    }
+}
+```
+```c++
+Vector &Vector::operator=(const Vector &a) // copy assignment
+{
+    double *p = new double[a.sz];
+    for (int i = 0; i != a.sz; ++i)
+        p[i] = a.elem[i];
+    delete[] elem; // delete old elements
+    elem = p;
+    sz = a.sz;
+    return *this;
+}
+```
