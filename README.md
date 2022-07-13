@@ -72,3 +72,49 @@ Vector &Vector::operator=(const Vector &a) // copy assignment
     return *this;
 }
 ```
+8. move constructor
+```c++
+class Geometry {
+public:
+    Geometry(size_t size) : m_data(size) {}
+
+    Geometry(const Geometry &other) : m_data(other.m_data) { std::cout << "Copy constructor" << std::endl; }
+
+    Geometry(Geometry &&other) noexcept: m_data(std::move(other.m_data)) {
+        std::cout << "Move constructor" << std::endl;
+    }
+
+private:
+    std::vector<double> m_data;
+};
+```
+```c++
+int main() {
+    Geometry geometry(1000000000);
+    {
+        ScopedTimer scopedTimer("copy constructor");
+        {
+            Geometry geometry2(geometry);
+            scopedTimer.Report();
+        }
+        scopedTimer.Report();
+    }
+    {
+        ScopedTimer scopedTimer("move constructor");
+        {
+            Geometry geometry2(std::move(geometry));
+            scopedTimer.Report();
+        }
+        scopedTimer.Report();
+    }
+    return 0;
+}
+```
+```c++
+Copy constructor
+copy constructor 28463
+copy constructor 29487
+Move constructor
+move constructor 1
+move constructor 511
+```
