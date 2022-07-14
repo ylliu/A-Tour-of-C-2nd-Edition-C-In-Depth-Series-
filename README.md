@@ -118,7 +118,7 @@ Move constructor
 move constructor 1
 move constructor 511
 ```
-9. resource management
+9. resource management            
 Memory is not the only resource. A resource is anything that has to be acquired and
 (explicitly or implicitly) released after use. Examples are memory, locks, sockets, file handles, and
 thread handles.Leaks must be avoided in any long-running system, but excessive resource retention can be almost as bad as a
