@@ -123,3 +123,7 @@ Memory is not the only resource. A resource is anything that has to be acquired 
 (explicitly or implicitly) released after use. Examples are memory, locks, sockets, file handles, and
 thread handles.Leaks must be avoided in any long-running system, but excessive resource retention can be almost as bad as a
 leak
+10. template            
+error:undefined referance to vector<int>::size()           
+I have an vector.h and vector.cpp and that is your mistake. Move code from cpp to h file. When I delete the code which is in click event there is no error that is how templates work in C++. 1. You have to declare them in headers. 2. Specialization of method does not creates, unless you call this method. Read more about templates.            
+  
